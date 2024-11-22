@@ -1,11 +1,12 @@
+import type { APIRoute } from "astro";
 import { getEntry } from "astro:content";
 
-export async function GET({ params }) {
-  const slug = params.day;
+export const GET: APIRoute = async ({ params }) => {
+  const day = params.day;
 
   const currentDate = new Date();
 
-  const dayEntry = await getEntry("days", slug);
+  const dayEntry = await getEntry("days", day);
 
   if (!dayEntry) {
     return new Response(
@@ -17,7 +18,7 @@ export async function GET({ params }) {
     );
   }
 
-  const dayNumber = Number(slug);
+  const dayNumber = Number(day);
   if (currentDate.getDate() >= dayNumber) {
     return new Response(
       JSON.stringify({
@@ -35,4 +36,4 @@ export async function GET({ params }) {
       { status: 401, headers: { "Content-Type": "application/json" } },
     );
   }
-}
+};
