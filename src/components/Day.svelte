@@ -1,22 +1,37 @@
+<script lang="ts" context="module">
+  import { writable } from "svelte/store";
+  export const open = writable(false);
+</script>
+
 <script lang="ts">
-  import Wallpaper from "./wallpaper.png";
+  // import Wallpaper from "./wallpaper.png";
   const day = 1;
   const text = "mery crismas";
 </script>
 
-<div class="day-popup box">
-  day {day}:
-  {text}
-  <!-- <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2dFq5Re86SoEE9ySsM89Du?utm_source=generator&theme=0" width="100%" height="250" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe> -->
-  <br />
-  <div class="just-text">❤️ Block your situationship ❤️</div>
-  <!-- <img src={Wallpaper} alt="Christmas Wallpaper" class="image"> -->
-  <!-- <div class="just-text">
+{#if $open}
+  <div class="day-popup box">
+    day {day}:
+    {text}
+    <iframe
+      style="border-radius:12px"
+      src="https://open.spotify.com/embed/playlist/2dFq5Re86SoEE9ySsM89Du?utm_source=generator&theme=0"
+      width="100%"
+      height="370px"
+      frameBorder="0"
+      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+      loading="lazy"
+    ></iframe>
+    <br />
+    <!-- <div class="just-text">❤️ Block your situationship ❤️</div> -->
+    <!-- <img src={Wallpaper} alt="Christmas Wallpaper" class="image"> -->
+    <!-- <div class="just-text">
     <a href="https://www.jigsawexplorer.com/online-jigsaw-puzzle-player.html?puzzle_id=christmas-town" target="_blank">
       Try a fun Christmas puzzle!
     </a>
   </div> -->
-</div>
+  </div>
+{/if}
 
 <style>
   .day-popup {

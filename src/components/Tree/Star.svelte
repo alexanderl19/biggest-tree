@@ -1,7 +1,9 @@
 <script>
   import { Group } from "three";
   import { T, forwardEventHandlers } from "@threlte/core";
-  import { useGltf } from "@threlte/extras";
+  import { useGltf, interactivity } from "@threlte/extras";
+  import { open } from "../Day.svelte";
+  interactivity();
 
   export const ref = new Group();
 
@@ -14,7 +16,12 @@
   {#await gltf}
     <slot name="fallback" />
   {:then gltf}
-    <T.Group position={[0, 0, 0]}>
+    <T.Group
+      position={[0, 0, 0]}
+      on:click={() => {
+        open.set(true);
+      }}
+    >
       <T.Mesh
         geometry={gltf.nodes.star_02002_1.geometry}
         material={gltf.materials["star.003"]}
