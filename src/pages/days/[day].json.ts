@@ -2,9 +2,17 @@ import type { APIRoute } from "astro";
 import { getEntry } from "astro:content";
 
 export const GET: APIRoute = async ({ params }) => {
-  const day = params.day;
+  let day = params.day;
 
-  const currentDate = new Date();
+  if (!day) {
+    return new Response(
+      JSON.stringify({
+        status: 404,
+        text: "Not Found",
+      }),
+      { status: 404 },
+    );
+  }
 
   const dayEntry = await getEntry("days", day);
 
@@ -17,6 +25,8 @@ export const GET: APIRoute = async ({ params }) => {
       { status: 404 },
     );
   }
+
+  const currentDate = new Date();
 
   const dayNumber = Number(day);
   if (currentDate.getDate() >= dayNumber) {
