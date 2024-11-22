@@ -31,4 +31,9 @@
     <T.PlaneGeometry args={[100, 100, 1, 1]} />
     <T.ShadowMaterial opacity={0.4} />
   </T.Mesh>
+
+  <T.Mesh castShadow receiveShadow position={[0, 1, 0]} scale={0.1}>
+    <T.CylinderGeometry args={[1.5, 2, 20, 32]} />
+    <T.MeshBasicMaterial color="#2D2C16" />
+  </T.Mesh>
 </T.Group>

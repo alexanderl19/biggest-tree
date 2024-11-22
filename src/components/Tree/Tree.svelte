@@ -3,6 +3,7 @@
   import { T, forwardEventHandlers } from "@threlte/core";
   import { useGltf } from "@threlte/extras";
   import { GhibliShader } from "./GhibliShader";
+  import Star from "./Star.svelte";
 
   export const ref = new Group();
 
@@ -36,6 +37,7 @@
   <T is={ref} {...$$restProps} bind:this={$component}>
     <T.Group name="Scene">
       <T.Group rotation={[0, 0, 0]} scale={0.8}>
+        <Star position={[0, 8, 0]} scale={5} />
         {#each instances as { position, scale, rotation }}
           <T.Mesh
             castShadow
