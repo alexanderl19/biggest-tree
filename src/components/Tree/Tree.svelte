@@ -1,11 +1,10 @@
 <script lang="ts">
-  import { Group, Vector3, type Color } from "three";
+  import { Group } from "three";
   import { T, forwardEventHandlers } from "@threlte/core";
   import { useGltf } from "@threlte/extras";
   import { GhibliShader } from "./GhibliShader";
 
   export const ref = new Group();
-  export let colors: Color[];
 
   const gltf = useGltf("/trees.glb");
 
@@ -31,16 +30,6 @@
     { position: [0, 6.5, 0], scale: [0.3, 0.3, 0.3], rotation: [4, 6, 4] },
     { position: [0, 7, 0], scale: [0.3, 0.3, 0.3], rotation: [5, 2, 4] },
   ];
-
-  $: uniforms = {
-    colorMap: {
-      value: colors,
-    },
-    brightnessThresholds: {
-      value: [0.6, 0.35, 0.001],
-    },
-    lightPosition: { value: new Vector3(15, 25, 15) },
-  };
 </script>
 
 {#if $gltf}
@@ -56,7 +45,7 @@
             {scale}
             {rotation}
           >
-            <T.ShaderMaterial attach="material" {...GhibliShader} {uniforms} />
+            <T.ShaderMaterial attach="material" {...GhibliShader} />
           </T.Mesh>
         {/each}
       </T.Group>

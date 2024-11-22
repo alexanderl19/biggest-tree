@@ -4,16 +4,19 @@ export const GhibliShader = {
   uniforms: {
     colorMap: {
       value: [
-        new Color("#427062"),
-        new Color("#33594E"),
-        new Color("#234549"),
-        new Color("#1E363F"),
+        new Color("#A1CEC4"),
+        new Color("#83C3B3"),
+        new Color("#62BBA1"),
+        new Color("#3D9F91"),
+        new Color("#24767A"),
+        new Color("#1C5958"),
+        new Color("#143B36"),
       ],
     },
     brightnessThresholds: {
-      value: [0.9, 0.45, 0.001],
+      value: [0.9, 0.65, .5, .4, 0.2, 0.001],
     },
-    lightPosition: { value: new Vector3(15, 15, 15) },
+    lightPosition: { value: new Vector3(5, 35, 5) },
   },
   vertexShader: /* glsl */ `
     // Set the precision for data types used in this shader
