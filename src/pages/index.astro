@@ -1,7 +1,7 @@
 ---
 import BaseHead from "../components/BaseHead.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
-import { FiberContainer } from "../components/Tree/FiberContainer";
+import Canvas from "../components/Tree/Canvas.svelte";
 ---
 
 <!doctype html>
@@ -10,6 +10,6 @@ import { FiberContainer } from "../components/Tree/FiberContainer";
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
   </head>
   <body>
-    <FiberContainer client:load />
+    <Canvas client:load />
   </body>
 </html>
