@@ -1,30 +1,30 @@
 import { getEntry } from "astro:content";
 
 export async function GET({ params }) {
-  const slug = params.day; 
+  const slug = params.day;
 
   const currentDate = new Date();
 
-  const dayEntry = await getEntry("blog", slug);
+  const dayEntry = await getEntry("days", slug);
 
   if (!dayEntry) {
     return new Response(
       JSON.stringify({
-        status: 401,
-        text: "Unauthorized",
+        status: 404,
+        text: "Not Found",
       }),
-      { status: 401 }
+      { status: 404 },
     );
   }
 
-  const dayNumber = Number(slug); 
+  const dayNumber = Number(slug);
   if (currentDate.getDate() >= dayNumber) {
     return new Response(
       JSON.stringify({
         status: 200,
         text: dayEntry.body,
       }),
-      { status: 200, headers: { "Content-Type": "application/json" } }
+      { status: 200, headers: { "Content-Type": "application/json" } },
     );
   } else {
     return new Response(
@@ -32,7 +32,7 @@ export async function GET({ params }) {
         status: 401,
         text: "Unauthorized",
       }),
-      { status: 401, headers: { "Content-Type": "application/json" } }
+      { status: 401, headers: { "Content-Type": "application/json" } },
     );
   }
 }
