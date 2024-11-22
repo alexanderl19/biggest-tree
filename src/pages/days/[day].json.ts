@@ -1,24 +1,38 @@
-import type { APIRoute } from 'astro';
-import { getEntry, getCollection } from "astro:content";
+import { getEntry } from "astro:content";
 
-export async function getStaticPaths() {
-  const days = await getCollection("blog");
-  return days.map((day) => ({
-    params: { day: day.slug },
-  }));
-}
+export async function GET({ params }) {
+  const slug = params.day; 
 
+  const currentDate = new Date();
 
-export const GET: APIRoute = async ({ params }) => {
-  const slug = params.day;
-  
-console.log(params)
+  const dayEntry = await getEntry("blog", slug);
 
-const day = await getEntry("blog", slug);
-console.log(day)
-  return new Response(
-    JSON.stringify({
-      text: day?.body
-    })
-  )
+  if (!dayEntry) {
+    return new Response(
+      JSON.stringify({
+        status: 401,
+        text: "Unauthorized",
+      }),
+      { status: 401 }
+    );
+  }
+
+  const dayNumber = Number(slug); 
+  if (currentDate.getDate() >= dayNumber) {
+    return new Response(
+      JSON.stringify({
+        status: 200,
+        text: dayEntry.body,
+      }),
+      { status: 200, headers: { "Content-Type": "application/json" } }
+    );
+  } else {
+    return new Response(
+      JSON.stringify({
+        status: 401,
+        text: "Unauthorized",
+      }),
+      { status: 401, headers: { "Content-Type": "application/json" } }
+    );
+  }
 }
