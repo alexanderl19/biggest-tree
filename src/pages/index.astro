@@ -1,8 +1,10 @@
 ---
-import BaseHead from "../../components/BaseHead.astro";
-import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
+import BaseHead from "../components/BaseHead.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import { getCollection } from "astro:content";
-import FormattedDate from "../../components/FormattedDate.astro";
+import FormattedDate from "../components/FormattedDate.astro";
+import {FiberContainer} from "../components/Tree/FiberContainer";
+
 
 const posts = (await getCollection("blog")).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
@@ -84,6 +86,7 @@ const posts = (await getCollection("blog")).sort(
     </style>
   </head>
   <body>
+    <FiberContainer client:load/>
     <main>
       <section>
         <ul>
