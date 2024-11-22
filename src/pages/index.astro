@@ -2,6 +2,7 @@
 import BaseHead from "../components/BaseHead.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import Canvas from "../components/Tree/Canvas.svelte";
+import Day from "../components/Day.svelte";
 ---
 
 <!doctype html>
@@ -10,6 +11,7 @@ import Canvas from "../components/Tree/Canvas.svelte";
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
   </head>
   <body>
+    <Day />
     <Canvas client:load />
   </body>
 </html>
