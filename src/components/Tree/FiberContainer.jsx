@@ -6,11 +6,14 @@ import { Ground } from "./Ground";
 export function FiberContainer() {
   return (
     <div style={{ width: "100vw", height: "100vh" }}>
-    <Canvas camera={{ position: [14.4666, 2.0365, 5.556165], fov: 40 }} shadows>
-      <Scene />
-      <Ground />
-      <OrbitControls minDistance={1} maxDistance={200} />
-    </Canvas>
+      <Canvas
+        camera={{ position: [14.4666, 2.0365, 5.556165], fov: 40 }}
+        shadows
+      >
+        <Scene />
+        <Ground />
+        <OrbitControls minDistance={1} maxDistance={200} />
+      </Canvas>
     </div>
   );
 }

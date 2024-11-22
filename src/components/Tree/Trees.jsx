@@ -16,7 +16,7 @@ export const Trees = forwardRef((props, ref) => {
       },
       lightPosition: { value: new Vector3(15, 15, 15) },
     }),
-    [props.colors]
+    [props.colors],
   );
 
   return (
@@ -24,8 +24,8 @@ export const Trees = forwardRef((props, ref) => {
       <mesh
         castShadow
         receiveShadow
-        geometry={nodes.Foliage.geometry}
-        position={[0.33, -0.05, -0.68]}
+        geometry={nodes.Cone.geometry}
+        position={[0, 1, 0]}
       >
         <shaderMaterial
           attach="material"
