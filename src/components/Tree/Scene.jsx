@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
-import { Trees } from "./Trees";
+import { Tree } from "./Tree";
 import { Color } from "three";
 
 export function Scene() {
@@ -14,8 +14,8 @@ export function Scene() {
         shadow-mapSize-width={2048}
         shadow-mapSize-height={2048}
       />
-      <Trees
-        position={[0, 0, 0]}
+      <Tree
+        position={[0, 0.5, 0]}
         colors={[
           new Color("#4a8d7e").convertLinearToSRGB(),
           new Color("#377f6a").convertLinearToSRGB(),
